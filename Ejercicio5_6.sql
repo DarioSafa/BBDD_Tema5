@@ -16,6 +16,8 @@ SELECT ALUMNO.NOMBRE, PRAPELLIDO, SGAPELLIDO FROM ALUMNO AL JOIN MATRICULA M USI
 
 
 -- E. Mostar las asignaturas de más de 100 horas que pertenecen al ciclo con siglas DAM que ha sido impartido por algún profesor del departamento de informática y comunicaciones y que ha sido cursado por alumnos en el curso 2023.
-SELECT AG.NOMBRE FROM ALUMNO AL JOIN MATRICULA M USING(DNI) JOIN ASIGNATURA AG USING(CODASING) JOIN IMPARTE I USING(CODASIG) JOIN PROFESOR P USING(DNI) JOIN DEPARTAMENTO D USING(CODDEP) ASIGNATURA JOIN CICLO C USING(CODCF) WHERE NH>100 AND SIGLAS = 'DAM' AND CICLO.NOMBRE = 'Informática y Comunicaciones' AND M.CURSO=2023;
+SELECT AG.NOMBRE FROM ALUMNO AL JOIN MATRICULA M USING(DNI) JOIN ASIGNATURA AG USING(CODASING) JOIN IMPARTE I USING(CODASIG) JOIN PROFESOR P USING(DNI) JOIN DEPARTAMENTO D USING(CODDEP) WHERE NH>100 AND SIGLAS = 'DAM' AND CICLO.NOMBRE = 'Informática y Comunicaciones' AND M.CURSO=2023 UNION SELECT AG.NOMBRE FROM ASIGNATURA AG2 JOIN CICLO C USING(CODCF) WHERE NH>100 AND SIGLAS = 'DAM' AND CICLO.NOMBRE = 'Informática y Comunicaciones' AND M.CURSO=2023;
 
 --se podrian hacer como el on, sería igual solo que en vez de using poner ON y la condicion de union
+
+--EL Union se puede usar porque sacas las mismos datos.
